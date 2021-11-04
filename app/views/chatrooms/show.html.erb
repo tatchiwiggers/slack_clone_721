@@ -1,0 +1,29 @@
+<h1>#<%= @chatroom.name %></h1>
+<%# temos aqui um div com as mensagens %>
+<%# temos tambem, um id no dataset pq vamos precisar recuperar essa info depois %>
+<%# aqui estamos colocando o id do chatroom dentro de data-chatroom-id para %>
+<%# que possamos pegá-la atraves do JS %>
+<div id="messages" data-chatroom-id="<%= @chatroom.id %>">
+<%# aqui iteramos sobre cada mensagem %>
+  <% @chatroom.messages.each do |message| %>
+  <%# aqui tambem cada mensagem tem seu id e ja vemos pq vamos precisar disso %>
+  <%# aqui estamos colocando o id da msg para %>
+  <%# que possamos pegá-la atraves do JS %>
+    <%= render 'messages/message', message: message %>
+  <% end %>
+</div>
+
+
+<%# isso é o que queremos %>
+<%# <form action="chatrooms/1/messages" method="post"></form> %>
+<%# RUN RAILS C LIKE THIS... CALL @CHATROOM SHOW THAT IT EXISTS BUT
+@MESSAGE DOESNT. %>
+<%# we need to instantiate a new message inside the chatrooms controller %>
+<%# we also have remote true so by default we have turolinks %>
+<%# which re-renders the whole body without loading the page %>
+<%= simple_form_for [ @chatroom, @message ], remote: true do |f| %>
+  <%= f.input :content, label: false, placeholder: "Message ##{@chatroom.name}" %>
+<% end %>
+<%# não tem submit button mas pode add se quiser %>
+<%# tudo adicionado aqui sera interpretado como text nuca como codigo %>
+<%#= f.submit  %>

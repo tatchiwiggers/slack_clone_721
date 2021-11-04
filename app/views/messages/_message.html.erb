@@ -1,0 +1,10 @@
+<div class="message-container" id="message-<%= message.id %>">
+  <i class="author">
+    <%# com o nickname do usuario %>
+    <span><%= message.user.nickname %></span>
+    <%# data %>
+    <small><%= message.created_at.strftime("%a %b %e at %l:%M%p") %></small>
+  </i>
+  <%# e o conteudo %>
+  <p><%= message.content %></p>
+</div>
